@@ -1,2 +1,7 @@
 build
 !.vscode/*
+.cache/clangd/index/gfx_tilemap.c.6D2A21D160291614.idx
+.cache/clangd/index/gfx_tilemap.h.54C531350643EB7E.idx
+.cache/clangd/index/lcd_ili9488.c.334EAE248FFEE5A3.idx
+.cache/clangd/index/lcd_ili9488.h.AE1510D108EC1A13.idx
+.cache/clangd/index/main.c.4AB49D68996B168D.idx

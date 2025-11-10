@@ -35,7 +35,12 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picocalc-game-library picocalc-game-library.c )
+add_executable(picocalc-game-library
+    main.c
+    lcd_ili9488.c
+    gfx_tilemap.c
+)
+
 
 pico_set_program_name(picocalc-game-library "picocalc-game-library")
 pico_set_program_version(picocalc-game-library "0.1")
