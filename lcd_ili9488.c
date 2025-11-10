@@ -58,7 +58,7 @@ void lcd_init(lcd_t *lcd) {
     lcd_cmd(0xC5); uint8_t data5[] = {0x00,0x12,0x80}; lcd_data(data5, 3);
 
     // MADCTL: MX=0, MY=0, MV=0, ML=0, BGR=1, MH=0 -> 0x08
-    // BGR bit=1 perché il display usa ordine BGR invece di RGB
+    // BGR bit=1 per usare BGR ordering nel display
     lcd_cmd(0x36); uint8_t data6[] = {0x08}; lcd_data(data6, 1);
 
     // Pixel Format: RGB565 16-bit
@@ -121,28 +121,10 @@ void lcd_update_dma(lcd_t *lcd) {
         fb_bytes[i + 1] = temp;
     }
 
-    // Trasferimento via DMA a 8-bit
-    dma_chan = dma_claim_unused_channel(true);
-    dma_channel_config c = dma_channel_get_default_config(dma_chan);
+    // Trasferimento SPI
+    spi_write_blocking(LCD_SPI_PORT, fb_bytes, total_bytes);
 
-    // Configurazione DMA: 8-bit per compatibilità
-    channel_config_set_transfer_data_size(&c, DMA_SIZE_8);
-    channel_config_set_read_increment(&c, true);
-    channel_config_set_write_increment(&c, false);
-    channel_config_set_dreq(&c, spi_get_dreq(LCD_SPI_PORT, true));
-
-    dma_channel_configure(dma_chan, &c,
-        &spi_get_hw(LCD_SPI_PORT)->dr,  // dest: SPI data register
-        fb_bytes,                        // source
-        total_bytes,                     // numero di byte
-        true                             // start immediately
-    );
-
-    // Attendi completamento DMA
-    dma_channel_wait_for_finish_blocking(dma_chan);
-    dma_channel_unclaim(dma_chan);
-
-    // Aspetta che SPI finisca di svuotare il FIFO
+    // Aspetta che SPI finisca
     while (spi_is_busy(LCD_SPI_PORT)) tight_loop_contents();
 
     // Riswap per il prossimo frame

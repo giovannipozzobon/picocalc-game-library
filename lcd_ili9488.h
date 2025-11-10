@@ -17,7 +17,7 @@
 #define LCD_PIN_DC   14  // DCX
 #define LCD_PIN_RST  15  // RESET
 
-// 16-bit RGB color macros
+// 16-bit RGB color macros - formato standard RGB565
 #define RGB565(r,g,b) ((((r)&0x1F)<<11) | (((g)&0x3F)<<5) | ((b)&0x1F))
 
 typedef struct {
