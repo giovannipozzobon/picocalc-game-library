@@ -40,6 +40,8 @@ add_executable(picocalc-game-library
     lcd_ili9488.c
     gfx_tilemap.c
     gfx_sprite.c
+    keyboard.c
+    southbridge.c
 )
 
 

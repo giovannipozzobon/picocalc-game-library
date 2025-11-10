@@ -5,3 +5,9 @@ build
 .cache/clangd/index/lcd_ili9488.c.334EAE248FFEE5A3.idx
 .cache/clangd/index/lcd_ili9488.h.AE1510D108EC1A13.idx
 .cache/clangd/index/main.c.4AB49D68996B168D.idx
+.cache/clangd/index/input.c.04EB15D022FD2DAF.idx
+.cache/clangd/index/input.h.C1EFF1CBC50D5784.idx
+.cache/clangd/index/keyboard.c.D415CC30D6F9157C.idx
+.cache/clangd/index/keyboard.h.6CB23A04023445A0.idx
+.cache/clangd/index/southbridge.c.391136FF8AC64BC8.idx
+.cache/clangd/index/southbridge.h.A8766C34CD9FCDC2.idx
