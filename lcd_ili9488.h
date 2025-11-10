@@ -31,5 +31,7 @@ void lcd_set_address_window(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1);
 void lcd_draw_pixel(lcd_t *lcd, uint16_t x, uint16_t y, uint16_t color);
 void lcd_fill_rect(lcd_t *lcd, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color);
 void lcd_update_dma(lcd_t *lcd);
+void lcd_clear(lcd_t *lcd, uint16_t color);
+uint16_t *lcd_get_framebuffer(lcd_t *lcd);
 
 #endif

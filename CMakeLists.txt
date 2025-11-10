@@ -39,6 +39,7 @@ add_executable(picocalc-game-library
     main.c
     lcd_ili9488.c
     gfx_tilemap.c
+    gfx_sprite.c
 )
 
 

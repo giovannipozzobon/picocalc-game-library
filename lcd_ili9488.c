@@ -9,6 +9,18 @@
 
 static int dma_chan;
 
+
+void lcd_clear(lcd_t *lcd, uint16_t color) {
+    for (int i = 0; i < LCD_WIDTH * LCD_HEIGHT; i++) {
+        lcd->framebuffer[i] = color;
+    }
+}
+
+// 👇 AGGIUNGI QUESTO BLOCCO
+uint16_t *lcd_get_framebuffer(lcd_t *lcd) {
+    return lcd->framebuffer;
+}
+
 // --- Funzioni di supporto SPI ---
 static inline void lcd_cmd(uint8_t cmd) {
     gpio_put(LCD_PIN_DC, 0);
