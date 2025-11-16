@@ -1,7 +1,7 @@
 #include "gfx_tilemap.h"
 #include <string.h>
 
-// --- Disegna l'intera tilemap nel framebuffer con offset di scroll ---
+// --- Draw entire tilemap in framebuffer with scroll offset ---
 void tilemap_draw(lcd_t *lcd, const tilemap_t *tm, int scroll_x, int scroll_y) {
     uint16_t tile_size = tm->tile_size;
     uint16_t visible_tiles_x = (LCD_WIDTH / tile_size) + 2;
@@ -41,7 +41,7 @@ void tilemap_draw(lcd_t *lcd, const tilemap_t *tm, int scroll_x, int scroll_y) {
     }
 }
 
-// --- Utilità per creare un tile singolo a runtime ---
+// --- Utility to create a single tile at runtime ---
 void tilemap_set_pixel_tile(uint16_t *tile, uint8_t x, uint8_t y, uint16_t color) {
-    tile[y * 16 + x] = color; // supponendo tile 16×16
+    tile[y * 16 + x] = color; // assuming 16×16 tile
 }

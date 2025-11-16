@@ -22,7 +22,7 @@ int sprite_create(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t *bi
             return i;
         }
     }
-    return -1; // nessuno slot libero
+    return -1; // no free slot
 }
 
 Sprite *sprite_get(int id) {
@@ -38,7 +38,7 @@ void sprite_update_all(void) {
     }
 }
 
-// Disegna lo sprite direttamente nel framebuffer
+// Draw sprite directly in framebuffer
 void sprite_draw_all(uint16_t *framebuffer, uint16_t screen_width, uint16_t screen_height) {
     for (int i = 0; i < MAX_SPRITES; i++) {
         Sprite *s = &sprites[i];
@@ -53,14 +53,14 @@ void sprite_draw_all(uint16_t *framebuffer, uint16_t screen_width, uint16_t scre
                 if (x < 0 || x >= screen_width) continue;
 
                 uint16_t color = s->bitmap[yy * s->width + xx];
-                if (color != 0xFFFF) // trasparenza (bianco)
+                if (color != 0xFFFF) // transparency (white)
                     framebuffer[y * screen_width + x] = color;
             }
         }
     }
 }
 
-// Collisione rettangolare semplice
+// Simple rectangular collision
 bool sprite_collide(const Sprite *a, const Sprite *b) {
     return (a->x < b->x + b->width &&
             a->x + a->width > b->x &&
@@ -68,7 +68,7 @@ bool sprite_collide(const Sprite *a, const Sprite *b) {
             a->y + a->height > b->y);
 }
 
-// Controlla collisioni tra sprite e invoca callback
+// Check collisions between sprites and invoke callback
 void sprite_check_collisions(collision_callback_t cb) {
     for (int i = 0; i < MAX_SPRITES; i++) {
         Sprite *a = &sprites[i];
